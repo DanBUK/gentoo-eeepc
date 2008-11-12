@@ -1,53 +1,33 @@
-diff --git a/drivers/net/Kconfig b/drivers/net/Kconfig
-index f4182cf..1c6150d 100644
---- a/drivers/net/Kconfig
-+++ b/drivers/net/Kconfig
-@@ -1884,6 +1884,17 @@ config NE_H8300
- 	  Say Y here if you want to use the NE2000 compatible
- 	  controller on the Renesas H8/300 processor.
+--- a/drivers/net/Kconfig 2008-11-12 14:08:55.000000000 +0000
++++ b/drivers/net/Kconfig 2008-11-12 14:12:34.000000000 +0000
+@@ -1840,6 +1840,17 @@
+          Say Y here if you want to use the NE2000 compatible
+          controller on the Renesas H8/300 processor.
  
 +config ATL2
-+	tristate "Atheros L2 Fast Ethernet support"
-+	depends on PCI
-+	select CRC32
-+	select MII
-+	help
-+	  This driver supports the Atheros L2 fast ethernet adapter.
++       tristate "Atheros L2 Fast Ethernet support"
++       depends on PCI
++       select CRC32
++       select MII
++       help
++         This driver supports the Atheros L2 fast ethernet adapter.
 +
-+	  To compile this driver as a module, choose M here.  The module
-+	  will be called atl2.
++         To compile this driver as a module, choose M here.  The module
++         will be called atl2.
 +
- source "drivers/net/fec_8xx/Kconfig"
  source "drivers/net/fs_enet/Kconfig"
  
-@@ -2342,12 +2353,12 @@ config QLA3XXX
- 	  will be called qla3xxx.
- 
- config ATL1
--	tristate "Attansic L1 Gigabit Ethernet support (EXPERIMENTAL)"
--	depends on PCI && EXPERIMENTAL
-+	tristate "Atheros L1 Gigabit Ethernet support"
-+	depends on PCI
- 	select CRC32
- 	select MII
- 	help
--	  This driver supports the Attansic L1 gigabit ethernet adapter.
-+	  This driver supports the Atheros L1 gigabit ethernet adapter.
- 
- 	  To compile this driver as a module, choose M here.  The module
- 	  will be called atl1.
-diff --git a/drivers/net/Makefile b/drivers/net/Makefile
-index dcbfe84..398b883 100644
---- a/drivers/net/Makefile
-+++ b/drivers/net/Makefile
-@@ -16,6 +16,7 @@ obj-$(CONFIG_EHEA) += ehea/
- obj-$(CONFIG_CAN) += can/
+ endif # NET_ETHERNET
+--- a/drivers/net/Makefile 2008-11-12 14:17:09.000000000 +0000
++++ b/drivers/net/Makefile 2008-11-12 14:17:48.000000000 +0000
+@@ -16,6 +16,7 @@
  obj-$(CONFIG_BONDING) += bonding/
  obj-$(CONFIG_ATL1) += atlx/
+ obj-$(CONFIG_ATL1E) += atl1e/
 +obj-$(CONFIG_ATL2) += atlx/
  obj-$(CONFIG_GIANFAR) += gianfar_driver.o
  obj-$(CONFIG_TEHUTI) += tehuti.o
- 
+
 diff --git a/drivers/net/atlx/Makefile b/drivers/net/atlx/Makefile
 index ca45553..e546aba 100644
 --- a/drivers/net/atlx/Makefile
